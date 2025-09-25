@@ -1,33 +1,3 @@
-# Tutorial: Usando Python no QGIS para criar grades de tiles
-
-Este repositório contém um tutorial que demonstra como utilizar Python dentro do QGIS para criar uma grade de tiles a partir de coordenadas geográficas e um nível de zoom. O tutorial inclui um script Python que automatiza a criação dessa grade e exibe o resultado no QGIS.
-
-## Introdução
-
-Tiles são pequenos blocos quadrados que dividem mapas digitais em seções, normalmente de 256x256 pixels, que permitem a visualização eficiente de grandes áreas geográficas em aplicações web e desktop. Cada tile corresponde a uma coordenada específica e um nível de zoom, permitindo que apenas a parte do mapa que está sendo visualizada seja carregada, melhorando a performance e a experiência do usuário. São utilizados por provedores de mapas, como *Google Maps*, *Bing Maps* e *OpenStreetMap*, que disponibilizam mapas baseados em camadas de tiles pré-gerados ou dinâmicos.
-
-O entendimento e a manipulação de tiles pode ser útil para o geoprocessamento, a visualização de mapas interativos e a integração de dados geoespaciais, permitindo controlar a resolução, área de cobertura e atributos das camadas do mapa. Este tutorial mostra como gerar tiles customizados usando Python no QGIS, de forma automatizada.
-
-## Pré-requisitos
-
-Antes de começar, certifique-se de ter instalado:
-
-- [QGIS](https://qgis.org) (versão 3.x ou superior)
-- Python 3.x (integrado ao QGIS)
-
-## Passo a Passo
-
-### 1. Abrir o Python Console no QGIS
-
-1. Abra o QGIS.
-2. Vá em `Complementos > Terminal Python` para abrir o console Python integrado.
-
-### 2. Salvar e Carregar o Script Python
-
-1. Clique em `Mostrar editor` para exibir o editor de scripts em Python
-2. Crie um arquivo chamado `criar_grade_tiles.py` e cole o seguinte código:
-
-```python
 from math import pi, log, tan, atan, sinh, degrees, radians, cos
 from qgis.core import (
     QgsVectorLayer, QgsFeature, QgsGeometry, QgsField, QgsFields,
@@ -102,23 +72,3 @@ def criar_grade_tiles(zoom, min_lon, min_lat, max_lon, max_lat):
     layer.updateExtents()
     QgsProject.instance().addMapLayer(layer)
     print(f"Grade criada: {layer_name}")
-```
-
-### 3. Executar o Script no QGIS
-
-1. No editor de scripts, clique em `Executar script` para carregar o script.
-2. No terminal Python execute a função com os parâmetros desejados.
-
-## Exemplo de aplicação
-
-A execução da seguinte chamada da função no terminal Python criará a grade de tiles no zoom 14 cobrindo a região de Fortaleza, Ceará. O resultado dessa execução é mostrado abaixo.
-
-```Python
-criar_grade_tiles(zoom=14, min_lon=-38.65512, min_lat=-3.92597, max_lon=-38.43527, max_lat=-3.66803)
-```
-
-![Resultado](images/result.png)
-
-## Conclusão
-
-Este tutorial mostrou como utilizar o Python no QGIS para automação e criar grades de tiles georreferenciadas. As grade são adicionadas como camadas de memória no QGIS com atributos personalizados. Essa funcionalidade pode ser útil para criar grades maiores, exportar para shapefiles ou integrar com mapas base do QGIS.
