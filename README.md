@@ -117,7 +117,7 @@ A execução da seguinte chamada da função no terminal Python criará a grade 
 criar_grade_tiles(zoom=14, min_lon=-38.65512, min_lat=-3.92597, max_lon=-38.43527, max_lat=-3.66803)
 ```
 
-![Resultado](images/result.png)
+![Resultado](images/result.PNG)
 
 ## Conclusão
 
